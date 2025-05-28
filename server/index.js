@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 정적 파일 제공 (HTML, JS 등)
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // 기본 라우터 설정
 app.get('/', (req, res) => {

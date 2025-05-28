@@ -1,16 +1,16 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const authRoutes = require('./routes/auth'); // ← 이 줄 추가
 
-app.use(express.json());
-app.use(express.static('public'));
-app.use('/auth', authRoutes); // ← 이 줄 추가
+// 정적 파일 제공 (HTML, JS 등)
+app.use(express.static(path.join(__dirname, 'public')));
 
+// 기본 라우터 설정
 app.get('/', (req, res) => {
-  res.send('서버가 실행 중입니다!');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
-  console.log(`서버가 포트 ${PORT}에서 실행 중입니다.`);
+  console.log(`서버가 실행 중입니다! 포트: ${PORT}`);
 });
